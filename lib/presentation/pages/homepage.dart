@@ -17,6 +17,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Minhas Tarefas'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.delete),
+          onPressed: _controller.clear,
+        ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Adicionar Tarefa'),
         onPressed: () => showModalBottomSheet(
@@ -31,8 +39,14 @@ class _HomePageState extends State<HomePage> {
                     controller: _controller.textEditingController,
                   ),
                   TextButton(
-                      onPressed: () => _controller
-                          .add(_controller.textEditingController.text),
+                      onPressed: () {
+                        if (_controller.textEditingController.text == '') {
+                          _controller.textEditingController.text =
+                              'Tarefa Sem Título';
+                        }
+                        _controller.add(_controller.textEditingController.text);
+                        _controller.textEditingController.text = '';
+                      },
                       child: const Text('Criar Tarefa'))
                 ],
               )),

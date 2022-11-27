@@ -21,4 +21,9 @@ abstract class HomePageControllerBase with Store {
       Task(title: title),
     );
   }
+
+  @action
+  void clear() {
+    taskList.clear();
+  }
 }
