@@ -22,6 +22,7 @@ class TaskTile extends StatelessWidget {
       title: Text(title),
       onTap: onTap,
       selectedTileColor: Colors.greenAccent,
+      autofocus: false,
     );
   }
 }

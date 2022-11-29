@@ -53,17 +53,18 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Observer(
-        builder: (context) => ListView.builder(
-          itemCount: _controller.taskList.length,
-          itemBuilder: (_, index) => TaskTile(
-            onTap: () {
-              _controller.resolveTask(_controller.taskList[index]);
-              setState(() {});
-            },
-            title: _controller.taskList[index].title,
-            isSelected: _controller.taskList[index].isResolved,
-          ),
-        ),
+        builder: (context) => ListView(
+            children: _controller.taskList
+                .map(
+                  (task) => TaskTile(
+                    onTap: () {
+                      _controller.resolveTask(task);
+                    },
+                    title: task.title,
+                    isSelected: task.isResolved,
+                  ),
+                )
+                .toList()),
       ),
     );
   }

@@ -6,13 +6,14 @@ part 'homepage.controller.g.dart';
 class HomePageController = HomePageControllerBase with _$HomePageController;
 
 abstract class HomePageControllerBase with Store {
-  ObservableList<Task> taskList = ObservableList();
+  @observable
+  ObservableList<Task> taskList = ObservableList<Task>();
 
   TextEditingController textEditingController = TextEditingController();
 
   @action
   void resolveTask(Task task) {
-    task.setIsResolved();
+    task.isResolved = !task.isResolved;
   }
 
   @action
